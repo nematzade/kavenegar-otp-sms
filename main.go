@@ -7,7 +7,7 @@ import (
 )
 
 func sendSms(c *gin.Context) {
-	api := kavenegar.New("4F58476A77637158625063507665656B62444241446E447144617750364363496A415352703956415341413D")
+	api := kavenegar.New("ApiKey")
 	receptor := c.Param("receptor")
 	template := "sejamOtp"
 	token := "۱۲۳۴"
