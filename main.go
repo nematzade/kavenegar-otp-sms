@@ -2,12 +2,24 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
+	_ "github.com/joho/godotenv"
 	"github.com/kavenegar/kavenegar-go"
+	"log"
+	_ "log"
 	"net/http"
+	"os"
+	_ "os"
 )
 
 func sendSms(c *gin.Context) {
-	api := kavenegar.New("ApiKey")
+
+	err := godotenv.Load(".env")
+	if err != nil {
+		log.Fatalf("Error loading environment variables file")
+	}
+	apiKey := os.Getenv("APIKEY")
+	api := kavenegar.New(apiKey)
 	receptor := c.Param("receptor")
 	template := "sejamOtp"
 	token := "۱۲۳۴"
