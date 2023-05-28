@@ -3,13 +3,10 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
-	_ "github.com/joho/godotenv"
 	"github.com/kavenegar/kavenegar-go"
 	"log"
-	_ "log"
 	"net/http"
 	"os"
-	_ "os"
 )
 
 func sendSms(c *gin.Context) {
