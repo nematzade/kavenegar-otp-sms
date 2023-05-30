@@ -5,8 +5,10 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/kavenegar/kavenegar-go"
 	"log"
+	"math/rand"
 	"net/http"
 	"os"
+	"strconv"
 )
 
 func sendSms(c *gin.Context) {
@@ -19,10 +21,10 @@ func sendSms(c *gin.Context) {
 	api := kavenegar.New(apiKey)
 	receptor := c.Param("receptor")
 	template := "sejamOtp"
-	token := "۱۲۳۴"
+	token := rand.Intn(9999)
 	params := &kavenegar.VerifyLookupParam{}
 
-	if _, err := api.Verify.Lookup(receptor, template, token, params); err != nil {
+	if _, err := api.Verify.Lookup(receptor, template, strconv.Itoa(token), params); err != nil {
 		switch err := err.(type) {
 		case *kavenegar.APIError:
 			c.IndentedJSON(http.StatusOK, gin.H{"status": false, "message": err.Error()})
